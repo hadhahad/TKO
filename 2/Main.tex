@@ -1,0 +1,152 @@
+\documentclass[11pt,american,czech]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=1cm,lmargin=1.5cm,rmargin=2cm,headheight=0.8cm,headsep=1cm,footskip=0.5cm}
+\setcounter{secnumdepth}{3}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+\usepackage{threeparttable}
+\usepackage{array}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newenvironment{lyxlist}[1]
+{\begin{list}{}
+{\settowidth{\labelwidth}{#1}
+ \setlength{\leftmargin}{\labelwidth}
+ \addtolength{\leftmargin}{\labelsep}
+ \renewcommand{\makelabel}[1]{##1\hfil}}}
+{\end{list}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+%% Font setup: please leave the LyX font settings all set to 'default'
+%% if you want to use any of these packages:
+
+%% Use Times New Roman font for text and Belleek font for math
+%% Please make sure that the 'esint' package is turned off in the
+%% 'Math options' page.
+\usepackage[varg]{txfonts}
+
+%% Use Utopia text with Fourier-GUTenberg math
+%\usepackage{fourier}
+
+%% Bitstream Charter text with Math Design math
+%\usepackage[charter]{mathdesign}
+
+%%---------------------------------------------------------------------
+
+%% Make the multiline figure/table captions indent so that the second
+%% line "hangs" right below the first one.
+%\usepackage[format=hang]{caption}
+
+%% Indent even the first paragraph in each section
+\usepackage{indentfirst}
+
+%%---------------------------------------------------------------------
+
+%% Disable page numbers in the TOC. LOF, LOT (TOC automatically
+%% adds \thispagestyle{chapter} if not overriden
+%\addtocontents{toc}{\protect\thispagestyle{empty}}
+%\addtocontents{lof}{\protect\thispagestyle{empty}}
+%\addtocontents{lot}{\protect\thispagestyle{empty}}
+
+%% Shifts the top line of the TOC (not the title) 1cm upwards 
+%% so that the whole TOC fits on 1 page. Additional page size
+%% adjustment is performed at the point where the TOC
+%% is inserted.
+%\addtocontents{toc}{\protect\vspace{-1cm}}
+
+%%---------------------------------------------------------------------
+
+% completely avoid orphans (first lines of a new paragraph on the bottom of a page)
+\clubpenalty=9500
+
+% completely avoid widows (last lines of paragraph on a new page)
+\widowpenalty=9500
+
+% disable hyphenation of acronyms
+\hyphenation{CDFA HARDI HiPPIES IKEM InterTrack MEGIDDO MIMD MPFA DICOM ASCLEPIOS MedInria}
+
+%%---------------------------------------------------------------------
+
+%% Print out all vectors in bold type instead of printing an arrow above them
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+% Replace standard \cite by the parenthetical variant \citep
+%\renewcommand{\cite}{\citep}
+
+\makeatother
+\pagestyle{empty} %vyrubaet numeraciyu stranic
+
+\usepackage{babel}
+\begin{document}
+
+\def\documentdate{\today}
+
+{\Large Domácí úkol č.2 z předmětu Teorie kódování. }  \par
+
+\vspace{1cm}
+
+\def\arraystretch{1.5}
+\setlength\tabcolsep{2.5mm}
+\begin{table}[ht!]
+\begin{threeparttable}
+\caption{Sčítání v prostoru polynomů ze $\Bbb{Z}_{\small 2}[x]$}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+\hline
+$\oplus$ & $x^2$ & $x^2+x$ & $x^2+x+1$ & $x^2+1$ & $x+1$ & $x$ & 1 & $0$ \\ \hline \hline
+$x^2$ & $0$ & $x$ & $x+1$ & $1$ & $x^2+x+1$ & $x^2+x$ & $x^2+1$ & $x^2$ \\ \hline
+$x^2+x$ & $x$ & $0$ & $1$ & $x+1$ & $x^2+1$ & $x^2$ & $x^2+x+1$ & $x^2+x$ \\ \hline
+$x^2+x+1$ & $x+1$ & $1$ & $0$ & $x$ & $x^2$ & $x^2+1$ & $x^2+x$ & $x^2+x+1$ \\ \hline
+$x^2+1$ & $1$ & $x+1$ & $x$ & $0$ & $x^2+x$ & $x^2+x+1$ & $x^2$ & $x^2+1$ \\ \hline
+$x+1$ & $x^2+x+1$ & $x^2+1$ & $x^2$ & $x^2+x$ & $0$ & $1$ & $x$ & $x+1$ \\ \hline
+$x$ & $x^2+x$ & $x^2$ & $x^2+1$ & $x^2+x+1$ & $1$ & $0$ & $x+1$ & $x$ \\ \hline
+$1$ & $x^2+1$ & $x^2+x+1$ & $x^2+x$ & $x^2$ & $x$ & $x+1$ & $0$ & $1$ \\ \hline
+$0$ & $x^2$ & $x^2+x$ & $x^2+x+1$ & $x^2+1$ & $x+1$ & $x$ & $1$ & $0$ \\ \hline
+\end{tabular} 
+\end{threeparttable}
+\end{table}
+
+\vspace{1cm}
+
+\setlength\tabcolsep{2.5mm}
+
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\begin{table}[h]
+\begin{threeparttable}
+\caption{Násobení$\,^*$ v prostoru polynomů ze $\Bbb{Z}_{\small 2}[x]$}
+\begin{tabular}{|c||c|c|c|c|c|c|c| C{2.5mm} |}
+\hline
+$\otimes$ & $x^2$ & $x^2+x$ & $x^2+x+1$ & $x^2+1$ & $x+1$ & $x$ & $1$ & $0$ \\ \hline \hline
+$x^2$ & $x^2+x+1$ & $x$ & $x^2+x$ & $x+1$ & $1$ & $x^2+1$ & $x^2$ & $0$ \\ \hline
+$x^2+x$ & $x$ & $x+1$ & $x^2+1$ & $x^2$ & $x^2+x+1$ & $1$ & $x^2+x$ & $0$ \\ \hline
+$x^2+x+1$ & $x^2+x$ & $x^2+1$ & $x$ & $1$ & $x^2$ & $x+1$ & $x^2+x+1$ & $0$ \\ \hline
+$x^2+1$ & $x+1$ & $x^2$ & $1$ & $x^2+x$ & $x$ & $x^2+x+1$ & $x^2+1$ & $0$ \\ \hline
+$x+1$ & $1$ & $x^2+x+1$ & $x^2$ & $x$ & $x^2+1$ & $x^2+x$ & $x+1$ & $0$ \\ \hline
+$x$ & $x^2+1$ & $1$ & $x+1$ & $x^2+x+1$ & $x^2+x$ & $x^2$ & $x$ & $0$ \\ \hline
+$1$ & $x^2$ & $x^2+x$ & $x^2+x+1$ & $x^2+1$ & $x+1$ & $x$ & $1$ & $0$ \\ \hline
+$0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ \hline
+\end{tabular} 
+\begin{tablenotes}
+      \scriptsize
+      \item $^*$Operace je provedena pomocí ireducebilního polynomu $f(x)=x^3+x^2+1$.
+    \end{tablenotes}
+\end{threeparttable} 
+\end{table}
+
+
+\vfill
+\begin{flushright}
+Vladislav Belov
+\end{flushright}
+\pagebreak
+
+\end{document}
